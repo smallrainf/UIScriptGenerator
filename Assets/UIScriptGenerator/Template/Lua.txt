@@ -1,0 +1,41 @@
+-------------控件定义--------------
+-- !@#start
+{0} = 
+{
+  --!@#definestart
+{1}
+  --!@#defineend
+}
+
+{2}
+-------------输入监听--------------
+function {0}:InitBtnListener()
+{3}
+end
+
+-- !@#startClick
+{4}
+-- !@#endClick
+-- !@#end
+
+------------生命周期------------------
+function {0}:OnLoadSuccess()
+	self:InitBtnListener();
+	self:InitFEventListener();
+end
+
+function {0}:OnInit()
+  
+end
+
+function {0}:OnClickMaskArea()
+  
+end
+
+function {0}:Dispose()
+  
+end
+
+function {0}:OnClose()
+  
+end
