@@ -1,12 +1,16 @@
 -------------控件定义--------------
 -- !@#start
-LoginUI = 
-{
-  --!@#definestart
 
-  --!@#defineend
-}
+--!@#definestart
+Img_Bg = nil;
+Btn_Login = nil;
+Btn_Quit = nil;
 
+--!@#defineend
+
+--!@#get/setstart
+
+--!@#get/setend
 
 -------------输入监听--------------
 function LoginUI:InitBtnListener()
@@ -16,6 +20,15 @@ end
 -- !@#startClick
 
 -- !@#endClick
+
+function LoginUI:InitFEventListener()
+
+end
+
+-- !@#startFEvent
+
+-- !@#endFEvent
+
 -- !@#end
 
 ------------生命周期------------------
