@@ -79,7 +79,9 @@
     <Compile Include="Assets\UIScriptGenerator\Lua\EUIBindItemType.cs" />
     <Compile Include="Assets\UIScriptGenerator\Lua\LuaBindItem.cs" />
     <Compile Include="Assets\UIScriptGenerator\Lua\LuaCtrlBase.cs" />
+    <Compile Include="Assets\UIScriptGenerator\Lua\LuaSubCtrlBase.cs" />
     <None Include="Assets\UIScriptGenerator\Template\CSharp.txt" />
+    <None Include="Assets\UIScriptGenerator\Template\LuaItem.txt" />
     <None Include="Assets\UIScriptGenerator\Template\Lua.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/caiyifei/Desktop/UnityProject/UIScriptGenerator/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

@@ -32,23 +32,19 @@ end
 -- !@#end
 
 ------------生命周期------------------
-function {0}:OnLoadSuccess()
+function {0}:Init()
 	self:InitBtnListener();
-	self:InitFEventListener();
-end
-
-function {0}:OnInit()
-  
-end
-
-function {0}:OnClickMaskArea()
-  
+	self:OnSpawn();
 end
 
 function {0}:Dispose()
-  
+  	self:OnRelease();
 end
 
-function {0}:OnClose()
+function {0}:OnSpawn()
+	self:InitFEventListener();
+end
+
+function {0}:OnRelease()
   
 end

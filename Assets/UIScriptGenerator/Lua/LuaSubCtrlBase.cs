@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LuaCtrlBase : MonoBehaviour
+public class LuaSubCtrlBase : MonoBehaviour
 {
     /// <summary>
     /// Lua绑定GameObject

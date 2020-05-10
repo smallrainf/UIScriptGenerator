@@ -7,6 +7,11 @@ namespace UIScript
     public abstract class UIComponent
     {
         /// <summary>
+        /// 预设名字
+        /// </summary>
+        public string PrefabName { get; set; }
+
+        /// <summary>
         /// 组件名称
         /// </summary>
         public string UIName { get; set; }
@@ -22,7 +27,7 @@ namespace UIScript
         /// <returns></returns>
         public virtual EUIBindItemType GetBindType()
         {
-            return EUIBindItemType.GameObject;
+            return EUIBindItemType.None;
         }
 
         /// <summary>
@@ -43,5 +48,4 @@ namespace UIScript
             return string.Empty;
         }
     }
-
 }

@@ -2,7 +2,7 @@
 -- !@#start
 
 --!@#definestart
-LoginUI = 
+LoginItem = 
 {
     --Image
     Img_Bg = nil;
@@ -15,12 +15,12 @@ LoginUI =
 --!@#defineend
 
 --!@#get/setstart
-function LoginUI:GetImage(image, sprite)
+function LoginItem:GetImage(image, sprite)
     if image ~= nil then
         return image.sprite;
     end
 end
-function LoginUI:SetImage(image, sprite)
+function LoginItem:SetImage(image, sprite)
     if image ~= nil then
         image.sprite = sprite;
     end
@@ -29,23 +29,23 @@ end
 --!@#get/setend
 
 -------------输入监听--------------
-function LoginUI:InitBtnListener()
+function LoginItem:InitBtnListener()
     self.csharp:AddSelfClick(self.Btn_Login.gameObject, self.OnBtn_Login, self);
     self.csharp:AddSelfClick(self.Btn_Quit.gameObject, self.OnBtn_Quit, self);
 
 end
 
 -- !@#startClick
-function LoginUI:OnBtn_Login(go)
+function LoginItem:OnBtn_Login(go)
 
 end
-function LoginUI:OnBtn_Quit(go)
+function LoginItem:OnBtn_Quit(go)
 
 end
 
 -- !@#endClick
 
-function LoginUI:InitFEventListener()
+function LoginItem:InitFEventListener()
 
 end
 
@@ -56,19 +56,19 @@ end
 -- !@#end
 
 ------------生命周期------------------
-function LoginUI:Init()
+function LoginItem:Init()
 	self:InitBtnListener();
 	self:OnSpawn();
 end
 
-function LoginUI:Dispose()
+function LoginItem:Dispose()
   	self:OnRelease();
 end
 
-function LoginUI:OnSpawn()
+function LoginItem:OnSpawn()
 	self:InitFEventListener();
 end
 
-function LoginUI:OnRelease()
+function LoginItem:OnRelease()
   
 end

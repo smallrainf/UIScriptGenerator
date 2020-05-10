@@ -5,17 +5,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Text.RegularExpressions;
 
 namespace UIScript
 {
     public class UIScriptGenerator : Editor
     {
+        private static string m_PrefabName;
+
         private static Dictionary<string, Type> m_UIComponentTypeDict = new Dictionary<string, Type>();
 
         static UIScriptGenerator()
         {
-            m_UIComponentTypeDict.Add("img", typeof(ImageComponent));
             m_UIComponentTypeDict.Add("btn", typeof(ButtonComponent));
+            m_UIComponentTypeDict.Add("item", typeof(CommonItemScrollViewComponent));
+            m_UIComponentTypeDict.Add("drop", typeof(DropDownComponent));
+            m_UIComponentTypeDict.Add("go", typeof(GameObjectComponent));
+            m_UIComponentTypeDict.Add("img", typeof(ImageComponent));
+            m_UIComponentTypeDict.Add("input", typeof(InputComponent));
+            m_UIComponentTypeDict.Add("rect", typeof(RectTransformComponent));
+            m_UIComponentTypeDict.Add("group", typeof(ReusableLayoutGroupComponent));
+            m_UIComponentTypeDict.Add("scroll", typeof(ScrollComponent));
+            m_UIComponentTypeDict.Add("slider", typeof(SliderComponent));
+            m_UIComponentTypeDict.Add("text", typeof(TextComponent));
+            m_UIComponentTypeDict.Add("toggle", typeof(ToggleComponent));
         }
 
         [MenuItem("GameObject/UIScript/创建CSharp脚本", false, 1)]
@@ -24,8 +37,23 @@ namespace UIScript
 
         }
 
-        [MenuItem("GameObject/UIScript/创建Lua脚本", false, 2)]
+        [MenuItem("GameObject/UIScript/创建LuaScreen脚本", false, 2)]
         public static void GenerateLuaUIScript()
+        {
+            GenerateLuaScript(Application.dataPath + "/UIScriptGenerator/Template/Lua.txt", true);
+        }
+
+        [MenuItem("GameObject/UIScript/创建LuaSubScreen脚本", false, 2)]
+        public static void GenerateLuaItemScript()
+        {
+            GenerateLuaScript(Application.dataPath + "/UIScriptGenerator/Template/LuaItem.txt", false);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="templatePath"></param>
+        private static void GenerateLuaScript(string templatePath, bool isUI)
         {
             GameObject go = Selection.activeGameObject;
             if (go == null)
@@ -34,32 +62,46 @@ namespace UIScript
                 return;
             }
 
+            m_PrefabName = go.name;
+
             List<UIComponent> uiComponents = CreateUIComponentList(go.transform);
 
-            string luaTemplate = File.ReadAllText(Application.dataPath + "/UIScriptGenerator/Template/Lua.txt");
+            string luaTemplate = File.ReadAllText(templatePath);
 
-            string defines = GetUIComponentDefineList(uiComponents);
+            string defines = GetVariableDefines(uiComponents);
+            string getOrSetFuncs = GetGetOrSetFuncs(uiComponents);
+            string registerClickFuncs = GetRegisterClickFuncs(uiComponents);
+            string clickFuncs = GetClickFuncs(uiComponents);
 
-            string luaInstance = string.Format(luaTemplate, go.name, defines, string.Empty, string.Empty, string.Empty);
+            string luaInstance = Utils.Format(luaTemplate, m_PrefabName, defines, getOrSetFuncs, registerClickFuncs, clickFuncs);
 
-            File.WriteAllText(Application.dataPath + "/Examples/Lua/" + go.name + ".lua", luaInstance);
+            File.WriteAllText(Application.dataPath + "/Examples/Lua/" + m_PrefabName + ".lua", luaInstance);
 
-            LuaCtrlBase ctrlBase = AddUIScript(go);
-            SetUIScriptData(ctrlBase, uiComponents);
+            if (isUI == true)
+            {
+                LuaCtrlBase ctrlBase = AddUIScript<LuaCtrlBase>(go);
+                SetUIScriptData(ctrlBase, uiComponents);
+            }
+            else
+            {
+                LuaSubCtrlBase ctrlBase = AddUIScript<LuaSubCtrlBase>(go);
+                SetItemScriptData(ctrlBase, uiComponents);
+            }
 
-            AssetDatabase.SaveAssets();
+            PrefabUtility.SaveAsPrefabAsset(go, "Assets/Examples/Prefabs/" + go.name + ".prefab");
+            //AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
 
         /// <summary>
         /// 添加UI脚本
         /// </summary>
-        private static LuaCtrlBase AddUIScript(GameObject uiObject)
+        private static T AddUIScript<T>(GameObject uiObject) where T : MonoBehaviour
         {
-            LuaCtrlBase ctrlBase = uiObject.GetComponent<LuaCtrlBase>();
+            T ctrlBase = uiObject.GetComponent<T>();
             if (ctrlBase == null)
             {
-                ctrlBase = uiObject.AddComponent<LuaCtrlBase>();
+                ctrlBase = uiObject.AddComponent<T>();
             }
             return ctrlBase;
         }
@@ -91,17 +133,113 @@ namespace UIScript
         }
 
         /// <summary>
+        /// 设置Item脚本变量
+        /// </summary>
+        /// <param name="subCtrlBase"></param>
+        /// <param name="uiComponents"></param>
+        private static void SetItemScriptData(LuaSubCtrlBase subCtrlBase, List<UIComponent> uiComponents)
+        {
+            if (subCtrlBase == null)
+            {
+                return;
+            }
+
+            subCtrlBase.m_LuaBindItems.Clear();
+
+            foreach (var uiComponent in uiComponents)
+            {
+                LuaBindItem bindItem = new LuaBindItem()
+                {
+                    variableName = uiComponent.UIName,
+                    bindType = uiComponent.GetBindType(),
+                    go = uiComponent.UIObject
+                };
+                subCtrlBase.m_LuaBindItems.Add(bindItem);
+            }
+        }
+
+        /// <summary>
         /// 获取UI组件集合定义字符串
         /// </summary>
         /// <param name="uiComponents"></param>
         /// <returns></returns>
-        private static string GetUIComponentDefineList(List<UIComponent> uiComponents)
+        private static string GetVariableDefines(List<UIComponent> uiComponents)
         {
             StringBuilder stringBuilder = new StringBuilder();
 
             foreach (var uiComponent in uiComponents)
             {
-                stringBuilder.AppendLine(string.Format("{0} = nil;", uiComponent.UIName));
+                stringBuilder.AppendLine(string.Format("    --{0}", uiComponent.GetBindType().ToString()));
+                stringBuilder.AppendLine(string.Format("    {0} = nil;", uiComponent.UIName));
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        /// <summary>
+        /// 获取UI组件集合Get/Set函数字符串
+        /// </summary>
+        /// <param name="uiComponents"></param>
+        /// <returns></returns>
+        private static string GetGetOrSetFuncs(List<UIComponent> uiComponents)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            // UI组件不一定存在get/set函数
+            foreach (var uiComponent in uiComponents)
+            {
+                string getterStr = uiComponent.GetGetterStr();
+                if (string.IsNullOrEmpty(getterStr) == false)
+                {
+                    stringBuilder.AppendLine(uiComponent.GetGetterStr());
+                }
+                string setterStr = uiComponent.GetSetterStr();
+                if (string.IsNullOrEmpty(setterStr) == false)
+                {
+                    stringBuilder.AppendLine(uiComponent.GetSetterStr());
+                }
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        /// <summary>
+        /// 获取UI组件集合注册Click函数字符串
+        /// </summary>
+        /// <param name="uiComponents"></param>
+        /// <returns></returns>
+        private static string GetRegisterClickFuncs(List<UIComponent> uiComponents)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            foreach (var uiComponent in uiComponents)
+            {
+                ButtonComponent button = uiComponent as ButtonComponent;
+                if (button != null)
+                {
+                    stringBuilder.AppendLine("    " + button.GetRegisterClickStr());
+                }
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        /// <summary>
+        /// 获取UI组件集合Click函数字符串
+        /// </summary>
+        /// <param name="uiComponents"></param>
+        /// <returns></returns>
+        private static string GetClickFuncs(List<UIComponent> uiComponents)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            foreach (var uiComponent in uiComponents)
+            {
+                ButtonComponent button = uiComponent as ButtonComponent;
+                if (button != null)
+                {
+                    stringBuilder.AppendLine(button.GetClickStr());
+                }
             }
 
             return stringBuilder.ToString();
@@ -124,11 +262,11 @@ namespace UIScript
         /// <summary>
         /// 创建UI组件
         /// </summary>
-        /// <param name="root"></param>
+        /// <param name="parent"></param>
         /// <param name="uiComponents"></param>
-        private static void CreateUIComponent(Transform root, ref List<UIComponent> uiComponents)
+        private static void CreateUIComponent(Transform parent, ref List<UIComponent> uiComponents)
         {
-            foreach (Transform child in root.transform)
+            foreach (Transform child in parent.transform)
             {
                 CreateUIComponent(child, ref uiComponents);
 
@@ -140,6 +278,7 @@ namespace UIScript
                     if (m_UIComponentTypeDict.TryGetValue(uiComponentTypeStr, out Type uiComponentType) == true)
                     {
                         UIComponent uiComponent = System.Activator.CreateInstance(uiComponentType) as UIComponent;
+                        uiComponent.PrefabName = m_PrefabName;
                         uiComponent.UIName = uiName;
                         uiComponent.UIObject = child.gameObject;
                         uiComponents.Add(uiComponent);

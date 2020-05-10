@@ -11,5 +11,19 @@ namespace UIScript
         {
             return EUIBindItemType.Button;
         }
+
+        public string GetRegisterClickStr()
+        {
+            return string.Format("self.csharp:AddSelfClick(self.{0}.gameObject, self.{1}, self);", UIName, "On" + UIName);
+        }
+
+        public string GetClickStr()
+        {
+            string clickStr =
+@"function {0}:{1}(go)
+
+end";
+            return string.Format(clickStr, PrefabName, "On" + UIName);
+        }
     }
 }

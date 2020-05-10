@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\UIScriptGenerator\Editor\UIScriptGenerator.cs" />
+    <Compile Include="Assets\UIScriptGenerator\Editor\Utils.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/caiyifei/Desktop/UnityProject/UIScriptGenerator/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
