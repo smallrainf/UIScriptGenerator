@@ -1,5 +1,5 @@
 -------------控件定义--------------
--- !@#start
+--!@#start
 
 --!@#definestart
 {0} = 
@@ -14,22 +14,24 @@
 
 -------------输入监听--------------
 function {0}:InitBtnListener()
+--!@#regclickstart
 {3}
+--!@#regclickend
 end
 
--- !@#startClick
+--!@#clickstart
 {4}
--- !@#endClick
+--!@#clickend
+
+--!@#end
 
 function {0}:InitFEventListener()
 
 end
 
--- !@#startFEvent
+--!@#feventstart
 
--- !@#endFEvent
-
--- !@#end
+--!@#feventend
 
 ------------生命周期------------------
 function {0}:Init()

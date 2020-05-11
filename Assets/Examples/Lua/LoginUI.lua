@@ -1,28 +1,42 @@
 -------------控件定义--------------
--- !@#start
+--!@#start
 
---!@#definestart
 LoginUI = 
 {
+--!@#definestart
     --Image
     Img_Bg = nil;
+    --Image
+    Img_foregroud = nil;
     --Button
     Btn_Login = nil;
     --Button
     Btn_Quit = nil;
+    --Button
+    Btn_Info = nil;
 
-}
 --!@#defineend
+}
 
 --!@#get/setstart
-function LoginUI:GetImage(image, sprite)
-    if image ~= nil then
-        return image.sprite;
+function LoginUI:get_Img_Bg_sprite()
+    if self.Img_Bg ~= nil then
+        return self.Img_Bg.sprite;
     end
 end
-function LoginUI:SetImage(image, sprite)
-    if image ~= nil then
-        image.sprite = sprite;
+function LoginUI:set_Img_Bg_sprite(sprite)
+    if self.Img_Bg ~= nil then
+        self.Img_Bg.sprite = sprite;
+    end
+end
+function LoginUI:get_Img_foregroud_sprite()
+    if self.Img_foregroud ~= nil then
+        return self.Img_foregroud.sprite;
+    end
+end
+function LoginUI:set_Img_foregroud_sprite(sprite)
+    if self.Img_foregroud ~= nil then
+        self.Img_foregroud.sprite = sprite;
     end
 end
 
@@ -30,45 +44,46 @@ end
 
 -------------输入监听--------------
 function LoginUI:InitBtnListener()
+--!@#regclickstart
     self.csharp:AddSelfClick(self.Btn_Login.gameObject, self.OnBtn_Login, self);
     self.csharp:AddSelfClick(self.Btn_Quit.gameObject, self.OnBtn_Quit, self);
+    self.csharp:AddSelfClick(self.Btn_Info.gameObject, self.OnBtn_Info, self);
 
+--!@#regclickend
 end
 
--- !@#startClick
-function LoginUI:OnBtn_Login(go)
+--!@#clickstart
 
-end
-function LoginUI:OnBtn_Quit(go)
+--!@#clickend
 
-end
-
--- !@#endClick
+--!@#end
 
 function LoginUI:InitFEventListener()
 
 end
 
--- !@#startFEvent
+--!@#feventstart
 
--- !@#endFEvent
-
--- !@#end
+--!@#feventend
 
 ------------生命周期------------------
-function LoginUI:Init()
+function LoginUI:OnLoadSuccess()
 	self:InitBtnListener();
-	self:OnSpawn();
-end
-
-function LoginUI:Dispose()
-  	self:OnRelease();
-end
-
-function LoginUI:OnSpawn()
 	self:InitFEventListener();
 end
 
-function LoginUI:OnRelease()
+function LoginUI:OnInit()
+  
+end
+
+function LoginUI:OnClickMaskArea()
+  
+end
+
+function LoginUI:Dispose()
+  
+end
+
+function LoginUI:OnClose()
   
 end

@@ -15,23 +15,23 @@ namespace UIScript
         public override string GetGetterStr()
         {
             string getterStr =
-@"function {0}:GetSliderValue(slider)
-    if slider ~= nil then
-        return slider.value;
+@"function {0}:get_{1}_value()
+    if self.{1} ~= nil then
+        return self.{1}.value;
     end
 end";
-            return string.Format(getterStr, PrefabName);
+            return string.Format(getterStr, PrefabName, UIName);
         }
 
         public override string GetSetterStr()
         {
             string setterStr =
-@"function {0}:SetSliderValue(slider, newValue)
-    if slider ~= nil then
-        slider.value = newValue;
+@"function {0}:set_{1}_value(newValue)
+    if self.{1} ~= nil then
+        self.{1}.value = newValue;
     end
 end";
-            return string.Format(setterStr, PrefabName);
+            return string.Format(setterStr, PrefabName, UIName);
         }
     }
 }

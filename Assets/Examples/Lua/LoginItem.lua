@@ -1,5 +1,5 @@
 -------------控件定义--------------
--- !@#start
+--!@#start
 
 --!@#definestart
 LoginItem = 
@@ -15,14 +15,14 @@ LoginItem =
 --!@#defineend
 
 --!@#get/setstart
-function LoginItem:GetImage(image, sprite)
-    if image ~= nil then
-        return image.sprite;
+function LoginItem:get_Img_Bg_sprite()
+    if self.Img_Bg ~= nil then
+        return self.Img_Bg.sprite;
     end
 end
-function LoginItem:SetImage(image, sprite)
-    if image ~= nil then
-        image.sprite = sprite;
+function LoginItem:set_Img_Bg_sprite(sprite)
+    if self.Img_Bg ~= nil then
+        self.Img_Bg.sprite = sprite;
     end
 end
 
@@ -30,12 +30,14 @@ end
 
 -------------输入监听--------------
 function LoginItem:InitBtnListener()
+--!@#regclickstart
     self.csharp:AddSelfClick(self.Btn_Login.gameObject, self.OnBtn_Login, self);
     self.csharp:AddSelfClick(self.Btn_Quit.gameObject, self.OnBtn_Quit, self);
 
+--!@#regclickend
 end
 
--- !@#startClick
+--!@#clickstart
 function LoginItem:OnBtn_Login(go)
 
 end
@@ -43,17 +45,17 @@ function LoginItem:OnBtn_Quit(go)
 
 end
 
--- !@#endClick
+--!@#clickend
+
+--!@#end
 
 function LoginItem:InitFEventListener()
 
 end
 
--- !@#startFEvent
+--!@#feventstart
 
--- !@#endFEvent
-
--- !@#end
+--!@#feventend
 
 ------------生命周期------------------
 function LoginItem:Init()

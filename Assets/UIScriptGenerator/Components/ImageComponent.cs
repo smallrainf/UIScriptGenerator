@@ -15,23 +15,23 @@ namespace UIScript
         public override string GetGetterStr()
         {
             string getterStr =
-@"function {0}:GetSprite(image)
-    if image ~= nil then
-        return image.sprite;
+@"function {0}:get_{1}_sprite()
+    if self.{1} ~= nil then
+        return self.{1}.sprite;
     end
 end";
-            return string.Format(getterStr, PrefabName);
+            return string.Format(getterStr, PrefabName, UIName);
         }
 
         public override string GetSetterStr()
         {
             string setterStr =
-@"function {0}:SetSprite(image, sprite)
-    if image ~= nil then
-        image.sprite = sprite;
+@"function {0}:set_{1}_sprite(sprite)
+    if self.{1} ~= nil then
+        self.{1}.sprite = sprite;
     end
 end";
-            return string.Format(setterStr, PrefabName);
+            return string.Format(setterStr, PrefabName, UIName);
         }
     }
 }
