@@ -11,9 +11,9 @@ LoginUI =
     --Button
     Btn_Login = nil;
     --Button
-    Btn_Quit = nil;
-    --Button
     Btn_Info = nil;
+    --Button
+    Btn_Quit = nil;
 
 --!@#defineend
 }
@@ -46,20 +46,28 @@ end
 function LoginUI:InitBtnListener()
 --!@#regclickstart
     self.csharp:AddSelfClick(self.Btn_Login.gameObject, self.OnBtn_Login, self);
-    self.csharp:AddSelfClick(self.Btn_Quit.gameObject, self.OnBtn_Quit, self);
     self.csharp:AddSelfClick(self.Btn_Info.gameObject, self.OnBtn_Info, self);
+    self.csharp:AddSelfClick(self.Btn_Quit.gameObject, self.OnBtn_Quit, self);
 
 --!@#regclickend
 end
 
 --!@#clickstart
+function LoginUI:OnBtn_Login(go)
+    print("LoginUI.OnBtn_Login");
+end
+function LoginUI:OnBtn_Info(go)
+    print("LoginUI.OnBtn_Info");
+end
+function LoginUI:OnBtn_Quit(go)
 
+end
 --!@#clickend
 
 --!@#end
 
 function LoginUI:InitFEventListener()
-
+    print("LoginUI.InitFEventListener");
 end
 
 --!@#feventstart
@@ -86,4 +94,8 @@ end
 
 function LoginUI:OnClose()
   
+end
+
+function LoginUI:CheckTextFormat()
+    
 end

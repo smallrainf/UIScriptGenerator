@@ -106,7 +106,31 @@ namespace UIScript
                 int newEndIndex = newLuaInstance.LastIndexOf("--!@#regclickend");
                 string newSubStr = newLuaInstance.Substring(newStartIndex, newEndIndex - newStartIndex);
 
+                int startIndex = oldLuaInstance.IndexOf("--!@#clickstart");
+                int endIndex = oldLuaInstance.LastIndexOf("--!@#clickend");
+                string oldClickSubStr = oldLuaInstance.Substring(startIndex + 16, endIndex - (startIndex + 16));
+                MatchCollection mc = Regex.Matches(oldClickSubStr, @"function(.|\n)*?end");
+                startIndex = newLuaInstance.IndexOf("--!@#clickstart");
+                endIndex = newLuaInstance.LastIndexOf("--!@#clickend");
+                string newClickSubStr = newLuaInstance.Substring(startIndex + 16, endIndex - (startIndex + 16));
+                MatchCollection mc2 = Regex.Matches(newClickSubStr, @"function(.|\n)*?end");
+                StringBuilder stringBuilder = new StringBuilder();
+                foreach (var m2 in mc2)
+                {
+                    string pendingStr = m2.ToString();
+                    foreach (var m1 in mc)
+                    {
+                        if (m1.ToString().Split('(')[0] == m2.ToString().Split('(')[0])
+                        {
+                            pendingStr = m1.ToString();
+                            break;
+                        }
+                    }
+                    stringBuilder.AppendLine(pendingStr);
+                }
+
                 newLuaInstance = oldLuaInstance.Replace(oldSubStr, newSubStr);
+                newLuaInstance = newLuaInstance.Replace(oldClickSubStr, stringBuilder.ToString());
             }
 
             File.WriteAllText(targetLuaPath, newLuaInstance);

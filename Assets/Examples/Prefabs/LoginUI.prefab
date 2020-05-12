@@ -229,7 +229,7 @@ RectTransform:
   m_Children:
   - {fileID: 163949213}
   m_Father: {fileID: 6369900502642027777}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -426,7 +426,7 @@ RectTransform:
   m_Children:
   - {fileID: 1505663871977471701}
   m_Father: {fileID: 6369900502642027777}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -543,8 +543,8 @@ RectTransform:
   - {fileID: 7584450565683963375}
   - {fileID: 2293797155218218705}
   - {fileID: 554573603}
-  - {fileID: 599673855}
   - {fileID: 2108014790491364338}
+  - {fileID: 599673855}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -575,12 +575,12 @@ MonoBehaviour:
   - variableName: Btn_Login
     bindType: 4
     go: {fileID: 554573602}
-  - variableName: Btn_Quit
-    bindType: 4
-    go: {fileID: 599673854}
   - variableName: Btn_Info
     bindType: 4
     go: {fileID: 335806357051060175}
+  - variableName: Btn_Quit
+    bindType: 4
+    go: {fileID: 599673854}
   m_LuaFile: {fileID: 0}
 --- !u!1 &1451320638077377089
 GameObject:
@@ -746,6 +746,7 @@ GameObject:
   - component: {fileID: 7584450565683963375}
   - component: {fileID: 7584450565683963361}
   - component: {fileID: 7584450565683963374}
+  - component: {fileID: 6133880726722680743}
   m_Layer: 5
   m_Name: Img_Bg#img
   m_TagString: Untagged
@@ -809,3 +810,17 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &6133880726722680743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7584450565683963372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d01b66d3c9240a2be5955cb31c65c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LuaBindItems: []
+  m_LuaFile: {fileID: 0}
