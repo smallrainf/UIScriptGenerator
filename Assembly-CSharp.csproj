@@ -63,26 +63,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\UIScriptGenerator\Components\ButtonComponent.cs" />
-    <Compile Include="Assets\UIScriptGenerator\Components\CommonItemScrollViewComponent.cs" />
-    <Compile Include="Assets\UIScriptGenerator\Components\DropDownComponent.cs" />
-    <Compile Include="Assets\UIScriptGenerator\Components\GameObjectComponent.cs" />
-    <Compile Include="Assets\UIScriptGenerator\Components\ImageComponent.cs" />
-    <Compile Include="Assets\UIScriptGenerator\Components\InputComponent.cs" />
-    <Compile Include="Assets\UIScriptGenerator\Components\RectTransformComponent.cs" />
-    <Compile Include="Assets\UIScriptGenerator\Components\ReusableLayoutGroupComponent.cs" />
-    <Compile Include="Assets\UIScriptGenerator\Components\ScrollComponent.cs" />
-    <Compile Include="Assets\UIScriptGenerator\Components\SliderComponent.cs" />
-    <Compile Include="Assets\UIScriptGenerator\Components\TextComponent.cs" />
-    <Compile Include="Assets\UIScriptGenerator\Components\ToggleComponent.cs" />
-    <Compile Include="Assets\UIScriptGenerator\Components\UIComponent.cs" />
     <Compile Include="Assets\UIScriptGenerator\Lua\EUIBindItemType.cs" />
     <Compile Include="Assets\UIScriptGenerator\Lua\LuaBindItem.cs" />
     <Compile Include="Assets\UIScriptGenerator\Lua\LuaCtrlBase.cs" />
     <Compile Include="Assets\UIScriptGenerator\Lua\LuaSubCtrlBase.cs" />
-    <None Include="Assets\UIScriptGenerator\Template\CSharp.txt" />
-    <None Include="Assets\UIScriptGenerator\Template\LuaItem.txt" />
-    <None Include="Assets\UIScriptGenerator\Template\Lua.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/caiyifei/Desktop/UnityProject/UIScriptGenerator/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

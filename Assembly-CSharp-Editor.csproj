@@ -63,8 +63,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\UIScriptGenerator\Editor\Components\Base\UIComponent.cs" />
+    <Compile Include="Assets\UIScriptGenerator\Editor\Components\ButtonComponent.cs" />
+    <Compile Include="Assets\UIScriptGenerator\Editor\Components\CommonItemScrollViewComponent.cs" />
+    <Compile Include="Assets\UIScriptGenerator\Editor\Components\DropDownComponent.cs" />
+    <Compile Include="Assets\UIScriptGenerator\Editor\Components\GameObjectComponent.cs" />
+    <Compile Include="Assets\UIScriptGenerator\Editor\Components\ImageComponent.cs" />
+    <Compile Include="Assets\UIScriptGenerator\Editor\Components\InputComponent.cs" />
+    <Compile Include="Assets\UIScriptGenerator\Editor\Components\RectTransformComponent.cs" />
+    <Compile Include="Assets\UIScriptGenerator\Editor\Components\ReusableLayoutGroupComponent.cs" />
+    <Compile Include="Assets\UIScriptGenerator\Editor\Components\ScrollComponent.cs" />
+    <Compile Include="Assets\UIScriptGenerator\Editor\Components\SliderComponent.cs" />
+    <Compile Include="Assets\UIScriptGenerator\Editor\Components\TextComponent.cs" />
+    <Compile Include="Assets\UIScriptGenerator\Editor\Components\ToggleComponent.cs" />
     <Compile Include="Assets\UIScriptGenerator\Editor\UIScriptGenerator.cs" />
     <Compile Include="Assets\UIScriptGenerator\Editor\Utils.cs" />
+    <None Include="Assets\UIScriptGenerator\Editor\Template\CSharp.txt" />
+    <None Include="Assets\UIScriptGenerator\Editor\Template\LuaItem.txt" />
+    <None Include="Assets\UIScriptGenerator\Editor\Template\Lua.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/caiyifei/Desktop/UnityProject/UIScriptGenerator/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
