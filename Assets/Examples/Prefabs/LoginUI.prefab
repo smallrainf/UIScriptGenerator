@@ -581,7 +581,7 @@ MonoBehaviour:
   - variableName: Btn_Quit
     bindType: 4
     go: {fileID: 599673854}
-  m_LuaFile: {fileID: 0}
+  m_LuaFile: {fileID: 4900000, guid: 7bdbce4f36c1d4098b3e7b7190c23808, type: 3}
 --- !u!1 &1451320638077377089
 GameObject:
   m_ObjectHideFlags: 0

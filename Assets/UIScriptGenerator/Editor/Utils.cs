@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace UIScript
 {
-    public class Utils
+    public static class Utils
     {
         /// <summary>
         /// 格式化字符串，替代{数字}内容
@@ -14,7 +14,7 @@ namespace UIScript
         /// <param name="str"></param>
         /// <param name="args"></param>
         /// <returns></returns>
-        public static string Format(string str, params string[] args)
+        public static string CustomFormat(this string str, params string[] args)
         {
             string newStr = str;
             string rexStr = @"\{[0-9]+\}";
@@ -33,5 +33,14 @@ namespace UIScript
             return newStr;
         }
 
+        /// <summary>
+        /// 移除路径中Assets前缀，保证Unity API直接调用
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string RemoveAssetsPrefix(this string path)
+        {
+            return path.Replace(Application.dataPath, "Assets");
+        }
     }
 }

@@ -54,10 +54,10 @@ end
 
 --!@#clickstart
 function LoginUI:OnBtn_Login(go)
-    print("LoginUI.OnBtn_Login");
+    print("LoginUI:OnBtn_Login");
 end
 function LoginUI:OnBtn_Info(go)
-    print("LoginUI.OnBtn_Info");
+
 end
 function LoginUI:OnBtn_Quit(go)
 
@@ -67,7 +67,7 @@ end
 --!@#end
 
 function LoginUI:InitFEventListener()
-    print("LoginUI.InitFEventListener");
+
 end
 
 --!@#feventstart
@@ -94,8 +94,4 @@ end
 
 function LoginUI:OnClose()
   
-end
-
-function LoginUI:CheckTextFormat()
-    
 end
