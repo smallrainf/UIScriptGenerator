@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace UIScript
 {
+    [UIComponentAttirbute("scroll")]
     public class ScrollComponent : UIComponent
     {
         public override EUIBindItemType GetBindType()

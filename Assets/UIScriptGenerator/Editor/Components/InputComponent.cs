@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace UIScript
 {
+    [UIComponentAttirbute("input")]
     public class InputComponent : UIComponent
     {
         public override EUIBindItemType GetBindType()

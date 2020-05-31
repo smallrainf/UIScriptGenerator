@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace UIScript
 {
+    [UIComponentAttirbute("slider")]
     public class SliderComponent : UIComponent
     {
         public override EUIBindItemType GetBindType()

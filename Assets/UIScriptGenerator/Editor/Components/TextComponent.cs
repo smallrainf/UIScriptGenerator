@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace UIScript
 {
+    [UIComponentAttirbute("text")]
     public class TextComponent : UIComponent
     {
         public override EUIBindItemType GetBindType()

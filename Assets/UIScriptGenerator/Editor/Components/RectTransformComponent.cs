@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace UIScript
 {
+    [UIComponentAttirbute("rect")]
     public class RectTransformComponent : UIComponent
     {
         public override EUIBindItemType GetBindType()

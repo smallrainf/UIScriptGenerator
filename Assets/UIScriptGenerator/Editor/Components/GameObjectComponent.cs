@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace UIScript
 {
+    [UIComponentAttirbute("go")]
     public class GameObjectComponent : UIComponent
     {
         public override EUIBindItemType GetBindType()

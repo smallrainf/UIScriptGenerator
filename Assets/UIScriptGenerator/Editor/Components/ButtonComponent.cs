@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace UIScript
 {
+    [UIComponentAttirbute("btn")]
     public class ButtonComponent : UIComponent
     {
         public override EUIBindItemType GetBindType()

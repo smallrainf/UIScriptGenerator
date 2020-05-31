@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace UIScript
 {
+    [UIComponentAttirbute("item")]
     public class CommonItemScrollViewComponent : UIComponent
     {
         public override EUIBindItemType GetBindType()

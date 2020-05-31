@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace UIScript
 {
+    [UIComponentAttirbute("img")]
     public class ImageComponent : UIComponent
     {
         public override EUIBindItemType GetBindType()

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace UIScript
 {
+    [UIComponentAttirbute("group")]
     public class ReusableLayoutGroupComponent : UIComponent
     {
         public override EUIBindItemType GetBindType()

@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\UIScriptGenerator\Editor\Components\Base\UIComponent.cs" />
+    <Compile Include="Assets\UIScriptGenerator\Editor\Components\Base\UIComponentAttirbute.cs" />
     <Compile Include="Assets\UIScriptGenerator\Editor\Components\ButtonComponent.cs" />
     <Compile Include="Assets\UIScriptGenerator\Editor\Components\CommonItemScrollViewComponent.cs" />
     <Compile Include="Assets\UIScriptGenerator\Editor\Components\DropDownComponent.cs" />

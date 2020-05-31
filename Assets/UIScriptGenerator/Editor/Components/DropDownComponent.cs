@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace UIScript
 {
+    [UIComponentAttirbute("drop")]
     public class DropDownComponent : UIComponent
     {
         public override EUIBindItemType GetBindType()
